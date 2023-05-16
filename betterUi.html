@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+</head>
+
+<body class="bg-red-400">
+    <!-- collapsed sidebar -->
+    <span class="absolute text-white text-4xl top-5 left-4 cursor-pointer" onclick="Openbar()">
+        <i class="bi bi-filter-left px-2 bg-gray-900 rounded-md"></i>
+    </span>
+    <!-- expanded sidebar -->
+    <div class="sidebar fixed top-0 bottom-0 lg:left-0 p-2 w-[300px] overflow-y-auto text-center bg-gray-900 shadow h-screen">
+        <div class="text-gray-100 text-xl">
+            <div class="p-2.5 mt-1 flex items-center rounded-md ">
+                <i class="bi bi-check2-circle px-2 py-1 bg-red-500 rounded-md"></i>
+                <h1 class="text-[15px]  ml-3 text-xl text-gray-200 font-bold">PomoSync</h1>
+                <i class="bi bi-x ml-20 cursor-pointer" onclick="CloseBar()"></i>
+            </div>
+            <hr class="my-2 text-gray-600">
+
+            <!-- set time -->
+            <div class="mb-2 flex items-center rounded-md">
+                <label for="work-time" class="text-[15px] w-96">Work Time (minutes):</label>
+                <input type="number" id="work-time" min="0" value="0.1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+            </div>
+            <div class="mb-2 flex items-center rounded-md">
+                <label for="rest-time" class="text-[15px] w-96">Rest Time (minutes):</label>
+                <input type="number" id="rest-time" min="1" value="0.1" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
+            </div>
+            
+            <button id="start" class="text-white bg-red-500 hover:bg-red-800 focus:ring-4 focus:ring-red-300 font-medium rounded-lg text-sm px-5 py-2.5 mr-2 mb-2">Start</button>
+            <hr class="my-2 text-gray-600">
+
+            <div class="p-2.5 mt-2 flex items-center rounded-md px-4 duration-300 cursor-pointer  hover:bg-red-400">
+                <i class="bi bi-house-door-fill"></i>
+                <span class="text-[15px] ml-4 text-gray-200">Home</span>
+            </div>
+        </div>
+    </div>
+    <!-- actually the body -->
+    <div id="timer"></div>
+    
+
+    <script>
+        function easeInOutCubic(t) {
+            return t < 0.5 ? 4 * t ** 3 : 1 - ((-2 * t + 2) ** 3) / 2;
+        }
+
+        function Openbar() {
+            // document.querySelector('.sidebar').classList.toggle('left-[-300px]')
+            // document.querySelector('.sidebar').classList.remove('hidden')
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarWidth = sidebar.offsetWidth;
+            let currentTranslate = -sidebarWidth;
+            const animationFrames = 30; // number of animation frames
+            const translateStep = sidebarWidth / animationFrames; // amount to translate in each frame
+
+            const animate = () => {
+                currentTranslate += translateStep;
+                sidebar.style.transform = `translateX(${currentTranslate}px)`;
+
+                if (currentTranslate < 0) {
+                    requestAnimationFrame(animate);
+                }
+            };
+
+            animate();
+        }
+
+        function CloseBar() {
+            // document.querySelector('.sidebar').classList.add('hidden')
+            const sidebar = document.querySelector('.sidebar');
+            const sidebarWidth = sidebar.offsetWidth;
+            let currentTranslate = 0;
+            let animationFrames = 30; // number of animation frames
+            const translateStep = -sidebarWidth / animationFrames; // amount to translate in each frame
+
+            const animate = () => {
+                currentTranslate += translateStep;
+                sidebar.style.transform = `translateX(${currentTranslate}px)`;
+                
+                if (currentTranslate > -sidebarWidth) {
+                    requestAnimationFrame(animate);
+                } 
+            };
+
+            animate();
+        }
+    </script>
+    <script src="main.js"></script>
+</body>
+
+</html>
