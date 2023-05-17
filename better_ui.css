@@ -1,7 +1,0 @@
-.sidebar.moved {
-    transform: translateX(-300px);
-  }
-
-.sidebar {
-    transform: translateX(0px);
-}

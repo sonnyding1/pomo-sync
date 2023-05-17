@@ -1,7 +1,9 @@
 circle {
-    stroke: #f4e2da;
+    stroke: #f37e48;
     stroke-width: 4;
     fill: none;
+    /* transition: stroke-dashoffset 0.35s;
+    -webkit-transition: stroke-dashoffset 0.35s; */
     stroke-linecap: round;
     stroke-dasharray: 301;
     stroke-dashoffset: 0;
