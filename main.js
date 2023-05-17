@@ -59,7 +59,17 @@ function updateTimer() {
     countdownNumber.textContent = `${hours.toString().padStart(2, '0')}:${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
     // update progress bar
     circle.style.strokeDashoffset = 301 - (elapsedTime / 1000 / (isStudy ? workTime : restTime)) * 301;
-    
+    // send notification if time is up
+    Notification.requestPermission().then(perm => {
+        if (perm === 'granted') {
+            if (elapsedTime >= (isStudy ? workTime : restTime) * 1000) {
+                new Notification(`Time's up!`, {
+                    body: `Time to ${isStudy ? 'rest' : 'study'}!`,
+                    tag: 'timer',
+                });
+            }
+        } 
+    });
 
 }
 
