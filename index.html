@@ -44,10 +44,15 @@
             </div>
         </div>
     </div>
+
+    <div id="state" class="fixed top-0 w-full mt-8 -z-10 text-center text-white text-lg"></div>
+
     <!-- actually the body -->
     <div class="flex flex-col items-center justify-center w-screen h-screen">
+        
+
         <!-- the circular progress bar -->
-        <div class="relative w-1/4">
+        <div class="relative w-1/4 mb-4">
             <svg viewBox="0 0 100 100" xmlns="http://www.w3.org/2000/svg" >
                 <g transform="rotate(-90, 50, 50)">
                     <circle cx="50" cy="50" r="48" class="transition-all ease-out"/>
@@ -57,9 +62,7 @@
             <div id="countdown-number" class="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 text-white text-center font-bold text-7xl">00:00:00</div>
         </div>
 
-        <div id="timer" class="text-white text-[24px]"></div>
-
-        <div>
+        <div class="p-4">
             <button id="start" class="start text-white bg-orange-400 hover:bg-orange-700 focus:ring-4 focus:ring-orange-200 font-medium rounded-lg text-sm px-5 py-2 m-2 transition-all ease-out">Start</button>
         </div>
     </div>
