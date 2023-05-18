@@ -62,10 +62,11 @@ function updateTimer() {
     // send notification if time is up
     Notification.requestPermission().then(perm => {
         if (perm === 'granted') {
-            if (elapsedTime >= (isStudy ? workTime : restTime) * 1000) {
-                new Notification(`Time's up!`, {
+            if (Math.floor(elapsedTime / 1000) == (isStudy ? workTime : restTime)) {
+                notification = new Notification(`Time's up!`, {
                     body: `Time to ${isStudy ? 'rest' : 'study'}!`,
                     tag: 'timer',
+                    requireInteraction: true,
                 });
             }
         } 
