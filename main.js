@@ -71,6 +71,7 @@ function updateTimer() {
             }
         } 
     });
+    console.log(elapsedTime);
 
 }
 
